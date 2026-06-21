@@ -1,42 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Movie Recommendation System</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #0f172a;
+            color: white;
+        }
+
+        .container {
+            margin-top: 60px;
+        }
+
+        .card {
+            background-color: #1e293b;
+            color: white;
+            border-radius: 12px;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+
+        select {
+            padding: 10px;
+        }
+
+        .movie-box {
+            margin-top: 15px;
+        }
+
+        .badge-movie {
+            background-color: #334155;
+            padding: 10px;
+            margin: 5px;
+            display: inline-block;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Movie Recommendation System</h1>
+<div class="container">
 
-    <form action="/recommend" method="POST">
+    <h1 class="text-center mb-4">🎬 Movie Recommendation System</h1>
 
-        <select name="movie">
+    <!-- FORM -->
+    <div class="card p-4">
 
-            {% for movie in movies %}
-                <option>{{ movie }}</option>
-            {% endfor %}
+        <form action="/recommend" method="POST">
 
-        </select>
+            <label class="form-label">Select a Movie</label>
 
-        <button type="submit">
-            Recommend
-        </button>
+            <select name="movie" class="form-select" required>
+                <option disabled selected>Choose a movie...</option>
 
-    </form>
+                {% for movie in movies %}
+                    <option value="{{ movie }}">{{ movie }}</option>
+                {% endfor %}
+            </select>
 
-    {% if recommendations %}
+            <button type="submit" class="btn btn-primary mt-3">
+                Get Recommendations
+            </button>
 
-        <h2>Recommended Movies for {{ selected_movie }}</h2>
+        </form>
 
-        <ul>
+    </div>
 
-            {% for movie in recommendations %}
-                <li>{{ movie }}</li>
-            {% endfor %}
-
-        </ul>
-
+    <!-- SELECTED MOVIE -->
+    {% if selected_movie %}
+    <div class="card p-4 mt-4">
+        <h4>Selected Movie</h4>
+        <span class="badge-movie">{{ selected_movie }}</span>
+    </div>
     {% endif %}
+
+    <!-- RECOMMENDATIONS -->
+    {% if recommendations %}
+    <div class="card p-4 mt-4">
+        <h4>Recommended Movies</h4>
+
+        <div class="movie-box">
+            {% for movie in recommendations %}
+                <span class="badge-movie">{{ movie }}</span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+</div>
 
 </body>
 </html>
