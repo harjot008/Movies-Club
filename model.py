@@ -26,6 +26,12 @@ def recommend(movie):
     # Collect movie names
     recommended = []
     for i in movie_list:
+        # Getting movie_id
+        movie_id = i[0]
+
+        # Fetch poster from the API
+        # To Do
+
         recommended.append(movies.iloc[i[0]].title)
 
     return recommended
