@@ -1,6 +1,7 @@
 import pickle
 import pandas as pd
 import requests
+import time
 
 movies = pickle.load(open('movies.pkl', 'rb'))
 similarity = pickle.load(open('similarity.pkl', 'rb'))
@@ -13,7 +14,8 @@ indices = pd.Series(
 def fetch_poster(movie_id):
     try:
         response = requests.get(
-            f'https://api.themoviedb.org/3/movie/{movie_id}?api_key=13cf3587f132337dc3b9c3728695ec5a&language=en-US'
+            f'https://api.themoviedb.org/3/movie/{movie_id}?api_key=13cf3587f132337dc3b9c3728695ec5a&language=en-US',
+            timeout=10
         )
 
         data = response.json()
@@ -52,6 +54,7 @@ def recommend(movie):
 
         # Fetch poster from the API
         recommended_movies_posters.append(fetch_poster(movie_id))
+
         # Fetch name of the movie from data base
         recommended.append(movies.iloc[i[0]].title)
 
