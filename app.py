@@ -21,7 +21,7 @@ def get_recommendation():
 
     return render_template(
         'index.html',
-        movies=movies['title'].values,
+        movies=sorted(movies['title'].values),
         recommendations=recommendations,
         selected_movie=selected_movie,
         recommendations_movies_posters=recommendations_movies_posters
