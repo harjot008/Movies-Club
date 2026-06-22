@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    movie_list = movies['title'].values
+    movie_list = sorted(movies['title'].values)
 
     return render_template(
         'index.html',
