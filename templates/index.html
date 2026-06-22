@@ -89,7 +89,15 @@
 
         <div class="movie-box">
             {% for movie in recommendations %}
-                <span class="badge-movie">{{ movie }}</span>
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ recommendations_movies_posters[loop.index0] }}"
+                        class="card-img-top"
+                        alt="{{ movie }}">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ movie }}</h5>
+                    </div>
+                </div>
             {% endfor %}
         </div>
     </div>

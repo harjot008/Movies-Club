@@ -17,13 +17,14 @@ def get_recommendation():
 
     selected_movie = request.form['movie']
 
-    recommendations = recommend(selected_movie)
+    recommendations, recommendations_movies_posters = recommend(selected_movie)
 
     return render_template(
         'index.html',
         movies=movies['title'].values,
         recommendations=recommendations,
-        selected_movie=selected_movie
+        selected_movie=selected_movie,
+        recommendations_movies_posters=recommendations_movies_posters
     )
 
 if __name__ == "__main__":
