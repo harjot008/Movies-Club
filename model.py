@@ -14,7 +14,7 @@ def fetch_poster(movie_id):
     try:
         response = requests.get(
             f'https://api.themoviedb.org/3/movie/{movie_id}?api_key=13cf3587f132337dc3b9c3728695ec5a&language=en-US',
-            timeout=10
+            timeout=4
         )
 
         data = response.json()
